@@ -1,0 +1,106 @@
+﻿@model Project.Models.Student
+
+@{
+    ViewBag.Title = "getStudent";
+}
+
+<h2>REGISTRAION FORM</h2>
+<style>
+    body {
+        background-image: url("/fonts/b.jpg");
+    }
+</style>
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        
+        <hr />
+        @Html.ValidationSummary(true)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Sname, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Sname)
+                @Html.ValidationMessageFor(model => model.Sname)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Saddress, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Saddress)
+                @Html.ValidationMessageFor(model => model.Saddress)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Semail, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Semail)
+                @Html.ValidationMessageFor(model => model.Semail)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.SGender, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("SGender", new SelectList(Enum.GetNames(typeof(Project.Models.Gender))), "select")
+                @Html.ValidationMessageFor(model => model.SGender)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.genderlist, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.RadioButton("Gender", "Male")Male
+                @Html.RadioButton("Gender", "Feale")Female
+
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Uname, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Uname)
+                @Html.ValidationMessageFor(model => model.Uname)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Pwd, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Pwd)
+                @Html.ValidationMessageFor(model => model.Pwd)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Cpwd, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Cpwd)
+                @Html.ValidationMessageFor(model => model.Cpwd)
+            </div>
+        </div>
+        <div class="form-group">
+        @Html.LabelFor(model => model.check, new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.CheckBox("Condition", false, new { @id = "chkcondition" }) I Accept all terms and conditions
+            
+        </div>
+    </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
